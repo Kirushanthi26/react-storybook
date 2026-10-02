@@ -5,6 +5,7 @@ const meta = {
   //Cool is used to group the stories in the sidebar
   title: "Cool/Tag",
   component: Tag, //This is the component that is being described
+  tags: ["autodocs"],
   parameters: {
     backgrounds: {
       options: {
@@ -26,6 +27,15 @@ type Story = StoryObj<typeof meta>;
 //args is an object that is used to pass props to the component
 //label is the prop that is being passed to the component
 //Tag test text is the value of the label prop
+/**
+ * variant is the prop that is being passed to the component
+ *
+ * Base is the name of the story. we can have multiple stories for the same component.
+ * args is an object that is used to pass props to the component.
+ * label is the prop that is being passed to the component
+ *
+ * Tag test text is the value of the label prop
+ */
 export const Base: Story = {
   args: {
     label: "Tag test text",

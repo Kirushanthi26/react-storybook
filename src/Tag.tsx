@@ -1,5 +1,7 @@
-type TagProps = {
+export type TagProps = {
+  /** label is the text that is displayed in the tag */
   label: string;
+  /** variant is the color of the tag. it can be primary, secondary, danger, warning, or success */
   variant: "primary" | "secondary" | "danger" | "warning" | "success";
 };
 
