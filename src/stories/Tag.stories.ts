@@ -5,6 +5,13 @@ const meta = {
   //Cool is used to group the stories in the sidebar
   title: "Cool/Tag",
   component: Tag, //This is the component that is being described
+  parameters: {
+    backgrounds: {
+      options: {
+        green: { name: "Green", value: "#00ff00" }, //green is the default background color which is only visible in the tag component background
+      },
+    },
+  },
 } satisfies Meta<typeof Tag>;
 //Meta is a type that is used to describe the component
 //satisfies is used to ensure that the component satisfies the Meta type
@@ -30,5 +37,13 @@ export const Danger: Story = {
   args: {
     label: "Delete tag",
     variant: "danger",
+  },
+  parameters: {
+    backgrounds: {
+      options: {
+        //orange is the background color which is only visible in the tag component background when the danger story is selected
+        orange: { name: "Orange", value: "#ffa500" },
+      },
+    },
   },
 };

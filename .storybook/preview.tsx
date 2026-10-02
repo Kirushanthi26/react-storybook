@@ -1,5 +1,6 @@
 import type { Preview } from "@storybook/react-vite";
 import "../src/index.css";
+import { options } from "less";
 
 const preview: Preview = {
   parameters: {
@@ -8,6 +9,15 @@ const preview: Preview = {
         color: /(background|color)$/i,
         date: /Date$/i,
       },
+    },
+    backgrounds: {
+      //backgrounds are the colors that are used to render the entire storybook component in the storybook
+      options: {
+        blue: { name: "Blue", value: "#007bff" },
+        dark: { name: "Dark", value: "#000000" },
+        light: { name: "Light", value: "#ffffff" },
+      },
+      default: "light",
     },
 
     a11y: {
