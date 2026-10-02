@@ -47,3 +47,46 @@ export const Danger: Story = {
     },
   },
 };
+
+export const MultipleTags: StoryObj = {
+  render: () => (
+    <div className="flex gap-2">
+      <Tag label="Tag 1" variant="primary" />
+      <Tag label="Tag 2" variant="secondary" />
+      <Tag label="Tag 3" variant="danger" />
+      <Tag label="Tag 4" variant="warning" />
+      <Tag label="Tag 5" variant="success" />
+    </div>
+  ),
+};
+
+type MultipleTagsCustomGapProps = {
+  gap: number;
+};
+
+export const MultipleTagsCustomGap: StoryObj<MultipleTagsCustomGapProps> = {
+  args: {
+    gap: 2,
+  },
+
+  argTypes: {
+    gap: {
+      control: {
+        type: "range",
+        min: 0,
+        max: 32,
+        step: 2,
+      },
+    },
+  },
+
+  render: (args) => (
+    <div className="flex" style={{ gap: `${args.gap}px` }}>
+      <Tag label="Tag 1" variant="primary" />
+      <Tag label="Tag 2" variant="secondary" />
+      <Tag label="Tag 3" variant="danger" />
+      <Tag label="Tag 4" variant="warning" />
+      <Tag label="Tag 5" variant="success" />
+    </div>
+  ),
+};
