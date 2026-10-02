@@ -1,12 +1,21 @@
 type TagProps = {
   label: string;
+  variant: "primary" | "secondary" | "danger" | "warning" | "success";
+};
+
+const colorClasses = {
+  primary: "bg-blue-500",
+  secondary: "bg-gray-500",
+  danger: "bg-red-500",
+  warning: "bg-yellow-500",
+  success: "bg-green-500",
 };
 
 //very basic tag component V1
-const Tag = ({ label }: TagProps) => {
+const Tag = ({ label, variant }: TagProps) => {
   return (
-    <div>
-      <span>{label}</span>
+    <div className={`${colorClasses[variant]} text-white px-2 py-1 rounded-md`}>
+      <span className="text-sm font-medium">{label}</span>
     </div>
   );
 };

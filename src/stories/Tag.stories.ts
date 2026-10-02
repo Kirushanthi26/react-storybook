@@ -22,5 +22,13 @@ type Story = StoryObj<typeof meta>;
 export const Base: Story = {
   args: {
     label: "Tag test text",
+    variant: "primary",
+  },
+};
+
+export const Danger: Story = {
+  args: {
+    label: "Delete tag",
+    variant: "danger",
   },
 };
