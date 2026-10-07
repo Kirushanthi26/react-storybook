@@ -1,0 +1,4 @@
+GET http://localhost:4000/products
+###
+
+You send that from the editor, like knocking on the shop door yourself. If the Node server is running, the editor shows the product JSON. The React app never reads this file. It only helps you check that http://localhost:4000/products works.
