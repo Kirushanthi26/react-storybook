@@ -1,5 +1,7 @@
 import { createServer, IncomingMessage, ServerResponse } from "http";
 
+// Server.ts is a tiny Node.js practice server. It serves a fake product list on port 4000 so the React components can fetch data like they would from a real API.
+
 // Sample products data
 const sampleProducts = [
   { name: "Laptop", price: "$999.99" },
