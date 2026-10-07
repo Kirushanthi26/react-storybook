@@ -77,7 +77,7 @@ const Post = ({ initialTags = [], ...props }: Props) => {
         />
         <button
           onClick={addTag}
-          className="bg-blue-500 text-white rounded-md p-6"
+          className="bg-blue-700 text-white rounded-md p-6"
         >
           Add
         </button>
