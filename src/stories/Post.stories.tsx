@@ -96,7 +96,7 @@ export const DeleteTagTest: Story = {
 };
 
 /**
- * "input" is the HTML tag. The role of <input type="text"> is "textbox". The name option is the label a screen reader would read, which here is aria-label="Add Tag". The HTML attribute name="addTagInput" is only the form field name, so findByRole ignores it.
+ * "input" is the HTML tag. The role of input type="text" is "textbox". The name option is the label a screen reader would read, which here is aria-label="Add Tag". The HTML attribute name="addTagInput" is only the form field name, so findByRole ignores it.
  *
  * onTagAdded is the function that is called when the tag is added.
  *
