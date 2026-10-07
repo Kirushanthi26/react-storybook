@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import Post from "../Post";
-import { expect } from "storybook/test";
+import { expect, userEvent } from "storybook/test";
 
 const meta = {
   title: "Cool/Post",
@@ -50,5 +50,38 @@ export const WithInitialTags: Story = {
     await expect(tagOne).toBeInTheDocument();
     await expect(tagTwo).toBeInTheDocument();
     await expect(tagThree).toBeInTheDocument();
+  },
+};
+
+/**
+ * This test checks if the tag is deleted when the delete button is clicked.
+ *
+ * findAllByRole is used to find all the delete buttons in the screen.
+ *
+ * userEvent.setup is used to setup the user event.
+ *
+ * click is used to click the delete button.
+ *
+ * queryByText is used to check if the tag is deleted from the screen.
+ */
+
+export const DeleteTagTest: Story = {
+  args: {
+    initialTags: ["Tag 1", "Tag 2", "Tag 3"],
+  },
+  play: async ({ canvas }) => {
+    const tagOne = await canvas.findByText("Tag 1", { selector: "span" });
+    const tagTwo = await canvas.findByText("Tag 2", { selector: "span" });
+    const tagThree = await canvas.findByText("Tag 3", { selector: "span" });
+    await expect(tagOne).toBeInTheDocument();
+    await expect(tagTwo).toBeInTheDocument();
+    await expect(tagThree).toBeInTheDocument();
+
+    const deleteTagButton = (await canvas.findAllByRole("button"))[0];
+
+    const user = userEvent.setup();
+    await user.click(deleteTagButton);
+
+    await expect(canvas.queryByText("Tag 1")).not.toBeInTheDocument();
   },
 };
