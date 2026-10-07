@@ -9,8 +9,9 @@ const config: StorybookConfig = {
     "@storybook/addon-docs",
     "@storybook/addon-onboarding",
     "storybook-addon-test-codegen",
+    "@storybook/addon-designs",
   ],
   framework: "@storybook/react-vite",
-  staticDirs: ["../public", "../static"],
+  staticDirs: ["../public"],
 };
 export default config;
