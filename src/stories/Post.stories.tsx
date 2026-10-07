@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import Post from "../Post";
-import { expect, userEvent } from "storybook/test";
+import { expect, fn, userEvent } from "storybook/test";
 
 const meta = {
   title: "Cool/Post",
@@ -10,8 +10,8 @@ const meta = {
   args: {
     content: "The content of a cool story",
     title: "Cool Story",
-    onTagAdded: () => {},
-    onTagRemoved: () => {},
+    onTagAdded: () => {}, // This is a function that is called when a tag is added.
+    onTagRemoved: () => {}, // This is a function that is called when a tag is removed.
   },
 } satisfies Meta<typeof Post>;
 
@@ -63,13 +63,20 @@ export const WithInitialTags: Story = {
  * click is used to click the delete button.
  *
  * queryByText is used to check if the tag is deleted from the screen.
+ *
+ * args is the arguments passed to the story.
+ *
+ * onTagRemoved is the function that is called when the tag is removed.
+ *
+ * toHaveBeenCalledWith is used to check if the function has been called with the correct arguments.
  */
 
 export const DeleteTagTest: Story = {
   args: {
     initialTags: ["Tag 1", "Tag 2", "Tag 3"],
+    onTagRemoved: fn(), //fn is a function invoked when the tag is removed.
   },
-  play: async ({ canvas }) => {
+  play: async ({ canvas, args }) => {
     const tagOne = await canvas.findByText("Tag 1", { selector: "span" });
     const tagTwo = await canvas.findByText("Tag 2", { selector: "span" });
     const tagThree = await canvas.findByText("Tag 3", { selector: "span" });
@@ -83,5 +90,7 @@ export const DeleteTagTest: Story = {
     await user.click(deleteTagButton);
 
     await expect(canvas.queryByText("Tag 1")).not.toBeInTheDocument();
+
+    await expect(args.onTagRemoved).toHaveBeenCalledWith("Tag 1");
   },
 };
