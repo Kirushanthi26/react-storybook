@@ -5,8 +5,8 @@ type Props = {
   title: string;
   content: string;
   initialTags?: string[];
-  onTagAdded: Function;
-  onTagRemoved: Function;
+  onTagAdded: (tag: string) => void;
+  onTagRemoved: (tag: string) => void;
 };
 
 const Post = ({ initialTags = [], ...props }: Props) => {
