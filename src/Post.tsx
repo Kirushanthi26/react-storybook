@@ -72,6 +72,8 @@ const Post = ({ initialTags = [], ...props }: Props) => {
           onChange={(e) => setNewTag(e.target.value)}
           placeholder="Add tag..."
           className="border border-gray-300 rounded-md p-2"
+          aria-label="Add Tag"
+          name="addTagInput"
         />
         <button
           onClick={addTag}

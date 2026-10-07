@@ -94,3 +94,42 @@ export const DeleteTagTest: Story = {
     await expect(args.onTagRemoved).toHaveBeenCalledWith("Tag 1");
   },
 };
+
+/**
+ * "input" is the HTML tag. The role of <input type="text"> is "textbox". The name option is the label a screen reader would read, which here is aria-label="Add Tag". The HTML attribute name="addTagInput" is only the form field name, so findByRole ignores it.
+ *
+ * onTagAdded is the function that is called when the tag is added.
+ *
+ * toHaveBeenCalledWith is used to check if the function has been called with the correct arguments.
+ *
+ * queryByText is used to check if the tag is added to the screen.
+ *
+ * toBeInTheDocument is used to check if the tag is added to the screen.
+ *
+ * toHaveValue is used to check if the input has the correct value.
+ *
+ * toBeInTheDocument is used to check if the tag is added to the screen.
+ */
+
+export const AddTagTest: Story = {
+  args: {
+    initialTags: ["Tag 1", "Tag 2", "Tag 3"],
+    onTagAdded: fn(), //fn is a function invoked when the tag is added.
+  },
+  play: async ({ canvas, args }) => {
+    //another way: findbyplaceholder is used to find the add tag input in the screen.
+    const addTagInput = await canvas.findByRole("textbox", {
+      name: "Add Tag",
+    });
+    const user = userEvent.setup();
+    await user.type(addTagInput, "Tag 4");
+
+    const addTagButton = await canvas.findByRole("button", { name: "Add" });
+    await user.click(addTagButton);
+
+    await expect(canvas.queryByText("Tag 4")).toBeInTheDocument();
+    await expect(args.onTagAdded).toHaveBeenCalledWith("Tag 4");
+
+    await expect(addTagInput).toHaveValue("");
+  },
+};
