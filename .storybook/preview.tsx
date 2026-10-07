@@ -1,11 +1,13 @@
 import type { Preview } from "@storybook/react-vite";
-import "../src/index.css";
+//import "../src/index.css";
 import { sb } from "storybook/test";
+import { mswLoader } from "msw-storybook-addon/csf3";
 
 //register the Utils module to be mocked
 sb.mock(import("../src/Utils.ts"), { spy: true });
 
 const preview: Preview = {
+  loaders: [mswLoader()],
   parameters: {
     controls: {
       matchers: {
