@@ -1,6 +1,9 @@
 import type { Preview } from "@storybook/react-vite";
 import "../src/index.css";
-import { options } from "less";
+import { sb } from "storybook/test";
+
+//register the Utils module to be mocked
+sb.mock(import("../src/Utils.ts"), { spy: true });
 
 const preview: Preview = {
   parameters: {
